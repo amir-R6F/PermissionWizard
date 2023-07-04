@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.gridSystem{
+    @apply grid grid-cols-5 justify-items-center gap-2 my-2.5
+}
