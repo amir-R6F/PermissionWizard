@@ -24,11 +24,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
     ->middleware('role:editPage,watchPage')
     ->name('home');
 
-Route::post("addRole", [RolesController::class, 'createRole'])->middleware('role:editPage');
-Route::get("listOfRoles", [RolesController::class, 'existRole']);
-Route::post("getRoleToEdit", [RolesController::class, 'getForEdit']);
-Route::post("updateRole", [RolesController::class, 'editRole']);
-Route::post("destroyRole", [RolesController::class, 'deleteRole']);
+Route::controller(RolesController::class)->middleware('role:editPage')->group(function(){
+    Route::post("addRole", 'createRole');
+    Route::get("listOfRoles", 'existRole');
+    Route::post("getRoleToEdit", 'getForEdit');
+    Route::post("updateRole", 'editRole');
+    Route::post("destroyRole", 'deleteRole');
+});
 
 Route::get('/user', function () {
     return "test";
